@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Giriş Yap</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2a2d3a;
+    --accent: #6c63ff;
+    --accent-dim: rgba(108,99,255,0.15);
+    --text: #e8e9f0;
+    --muted: #7a7d8e;
+    --error: #ff6b6b;
+    --success: #51cf66;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 420px;
+  }
+
+  .logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: 2rem;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-bottom: 2rem;
+  }
+
+  .alert {
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    margin-bottom: 1.25rem;
+  }
+  .alert-error { background: rgba(255,107,107,0.1); border: 1px solid rgba(255,107,107,0.3); color: var(--error); }
+  .alert-success { background: rgba(81,207,102,0.1); border: 1px solid rgba(81,207,102,0.3); color: var(--success); }
+
+  .field { margin-bottom: 1.25rem; }
+
+  label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  input {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 0.95rem;
+    transition: border-color 0.2s;
+    outline: none;
+  }
+
+  input:focus { border-color: var(--accent); }
+
+  button[type="submit"] {
+    width: 100%;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 0.85rem;
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: opacity 0.2s;
+  }
+
+  button[type="submit"]:hover { opacity: 0.88; }
+
+  .footer-link {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.875rem;
+    color: var(--muted);
+  }
+
+  .footer-link a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="logo">// auth_app</div>
+  <h1>Tekrar hoş geldin</h1>
+  <p class="subtitle">Devam etmek için giriş yap.</p>
+
+  {% if error %}
+  <div class="alert alert-error">{{ error }}</div>
+  {% endif %}
+  {% if success %}
+  <div class="alert alert-success">{{ success }}</div>
+  {% endif %}
+
+  <form method="post" action="/login">
+    <div class="field">
+      <label>Kullanıcı Adı</label>
+      <input type="text" name="username" placeholder="kullanici_adi" required autofocus>
+    </div>
+    <div class="field">
+      <label>Şifre</label>
+      <input type="password" name="password" placeholder="••••••••" required>
+    </div>
+    <button type="submit">Giriş Yap</button>
+  </form>
+
+  <div class="footer-link">
+    Hesabın yok mu? <a href="/register">Kayıt ol</a>
+  </div>
+</div>
+</body>
+</html>

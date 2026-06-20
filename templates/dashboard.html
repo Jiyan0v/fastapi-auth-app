@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2a2d3a;
+    --accent: #6c63ff;
+    --accent-dim: rgba(108,99,255,0.12);
+    --text: #e8e9f0;
+    --muted: #7a7d8e;
+    --success: #51cf66;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 480px;
+  }
+
+  .logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: 2rem;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: rgba(81,207,102,0.1);
+    border: 1px solid rgba(81,207,102,0.3);
+    color: var(--success);
+    font-size: 0.78rem;
+    font-weight: 500;
+    padding: 0.3rem 0.75rem;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+  }
+
+  .badge::before { content: "●"; font-size: 0.6rem; }
+
+  h1 { font-size: 1.6rem; font-weight: 600; margin-bottom: 0.5rem; }
+  .subtitle { font-size: 0.9rem; color: var(--muted); margin-bottom: 2rem; }
+
+  .token-box {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .token-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .token-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    word-break: break-all;
+    line-height: 1.6;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .info-item {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem;
+  }
+
+  .info-item .label { font-size: 0.75rem; color: var(--muted); margin-bottom: 0.25rem; }
+  .info-item .value { font-size: 0.95rem; font-weight: 500; }
+
+  a.logout {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 0.875rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.75rem;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  a.logout:hover { border-color: #ff6b6b; color: #ff6b6b; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="logo">// auth_app</div>
+  <div class="badge">Oturum aktif</div>
+  <h1>Merhaba, {{ username }}!</h1>
+  <p class="subtitle">Başarıyla giriş yaptın. JWT token'ın aşağıda.</p>
+
+  <div class="token-box">
+    <div class="token-label">JWT Access Token</div>
+    <div class="token-value">{{ token }}</div>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-item">
+      <div class="label">Kullanıcı</div>
+      <div class="value">{{ username }}</div>
+    </div>
+    <div class="info-item">
+      <div class="label">API Endpoint</div>
+      <div class="value">/api/me</div>
+    </div>
+  </div>
+
+  <a href="/login" class="logout">Çıkış Yap</a>
+</div>
+</body>
+</html>
